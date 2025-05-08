@@ -1,0 +1,16 @@
+-- NOTE: This SQL script won't work directly in the database.
+-- Instead, you need to create the bucket through the Supabase dashboard or using the JavaScript API.
+
+-- INSTRUCTIONS FOR MANUAL BUCKET CREATION:
+-- 1. Go to your Supabase project dashboard
+-- 2. Navigate to "Storage" in the left sidebar
+-- 3. Click "Create bucket"
+-- 4. Enter "materials" as the bucket name
+-- 5. Check "Public bucket" if you want files to be publicly accessible
+-- 6. Click "Create bucket"
+-- 
+-- Then set up the following policies:
+-- 1. For INSERT: Allow authenticated users to upload files
+-- 2. For SELECT: Allow authenticated users to view files
+-- 3. For UPDATE: Allow authenticated users to update their own files
+-- 4. For DELETE: Allow authenticated users to delete their own files
