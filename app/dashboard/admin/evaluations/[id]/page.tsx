@@ -150,11 +150,11 @@ export default function CourseEvaluationDetails() {
             overallRating[evaluation.overall_rating - 1]++
 
             sumTeachingQuality += evaluation.teaching_quality
-            sumCourseContent += eval.course_content
-            sumCourseMaterials += eval.course_materials
-            sumWorkload += eval.workload
-            sumOrganization += eval.organization
-            sumOverallRating += eval.overall_rating
+            sumCourseContent += evaluation.course_content
+            sumCourseMaterials += evaluation.course_materials
+            sumWorkload += evaluation.workload
+            sumOrganization += evaluation.organization
+            sumOverallRating += evaluation.overall_rating
           })
 
           setStats({
@@ -174,10 +174,10 @@ export default function CourseEvaluationDetails() {
           })
 
           // Get comments
-          const evaluationComments = evaluations.map((eval) => ({
-            strengths: eval.strengths,
-            improvements: eval.improvements,
-            additional_comments: eval.additional_comments,
+          const evaluationComments = evaluations.map((evaluation) => ({
+            strengths: evaluation.strengths,
+            improvements: evaluation.improvements,
+            additional_comments: evaluation.additional_comments,
           }))
 
           setComments(evaluationComments)
@@ -298,13 +298,60 @@ export default function CourseEvaluationDetails() {
 
     // Prepare ratings distribution data
     const distributionData = [
-      ["Rating", "Teaching Quality", "Course Content", "Course Materials", "Workload", "Organization", "Overall Rating"],
-      ["5", stats.teaching_quality[4], stats.course_content[4], stats  "Overall Rating"],
-      ["5", stats.teaching_quality[4], stats.course_content[4], stats.course_materials[4], stats.workload[4], stats.organization[4], stats.overall_rating[4]],
-      ["4", stats.teaching_quality[3], stats.course_content[3], stats.course_materials[3], stats.workload[3], stats.organization[3], stats.overall_rating[3]],
-      ["3", stats.teaching_quality[2], stats.course_content[2], stats.course_materials[2], stats.workload[2], stats.organization[2], stats.overall_rating[2]],
-      ["2", stats.teaching_quality[1], stats.course_content[1], stats.course_materials[1], stats.workload[1], stats.organization[1], stats.overall_rating[1]],
-      ["1", stats.teaching_quality[0], stats.course_content[0], stats.course_materials[0], stats.workload[0], stats.organization[0], stats.overall_rating[0]]
+      [
+        "Rating",
+        "Teaching Quality",
+        "Course Content",
+        "Course Materials",
+        "Workload",
+        "Organization",
+        "Overall Rating",
+      ],
+      [
+        "5",
+        stats.teaching_quality[4],
+        stats.course_content[4],
+        stats.course_materials[4],
+        stats.workload[4],
+        stats.organization[4],
+        stats.overall_rating[4],
+      ],
+      [
+        "4",
+        stats.teaching_quality[3],
+        stats.course_content[3],
+        stats.course_materials[3],
+        stats.workload[3],
+        stats.organization[3],
+        stats.overall_rating[3],
+      ],
+      [
+        "3",
+        stats.teaching_quality[2],
+        stats.course_content[2],
+        stats.course_materials[2],
+        stats.workload[2],
+        stats.organization[2],
+        stats.overall_rating[2],
+      ],
+      [
+        "2",
+        stats.teaching_quality[1],
+        stats.course_content[1],
+        stats.course_materials[1],
+        stats.workload[1],
+        stats.organization[1],
+        stats.overall_rating[1],
+      ],
+      [
+        "1",
+        stats.teaching_quality[0],
+        stats.course_content[0],
+        stats.course_materials[0],
+        stats.workload[0],
+        stats.organization[0],
+        stats.overall_rating[0],
+      ],
     ]
 
     // Prepare average ratings data
