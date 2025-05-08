@@ -3,16 +3,23 @@ import { createClient } from "@supabase/supabase-js"
 import type { Database } from "@/types/supabase"
 
 // Create a Supabase client for server-side operations
-const supabaseAdmin = createClient<Database>(
-  process.env.NEXT_PUBLIC_SUPABASE_URL || "",
-  process.env.SUPABASE_SERVICE_ROLE_KEY || "",
-  {
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ""
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ""
+
+// Only create the admin client when the handler is actually called
+// This prevents build-time errors when environment variables aren't available
+const getSupabaseAdmin = () => {
+  if (!supabaseUrl || !supabaseServiceKey) {
+    throw new Error("Missing Supabase environment variables. Please check your configuration.")
+  }
+
+  return createClient<Database>(supabaseUrl, supabaseServiceKey, {
     auth: {
       autoRefreshToken: false,
       persistSession: false,
     },
-  },
-)
+  })
+}
 
 export async function POST(request: Request) {
   try {
@@ -34,6 +41,9 @@ export async function POST(request: Request) {
       courseId,
       senderId,
     })
+
+    // Initialize the Supabase client only when needed
+    const supabaseAdmin = getSupabaseAdmin()
 
     // First, let's check the structure of the announcements table
     const { data: tableInfo, error: tableInfoError } = await supabaseAdmin.rpc("table_info", {
@@ -167,3 +177,4 @@ export async function POST(request: Request) {
     )
   }
 }
+
